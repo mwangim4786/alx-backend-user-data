@@ -10,6 +10,7 @@ def hash_password(password: str) -> bytes:
     if password:
         return bcrypt.hashpw(str.encode(password), bcrypt.gensalt())
 
+
 def is_valid(hashed_password: bytes, password: str) -> bool:
     """  expects 2 arguments and returns a boolean.
         Use bcrypt to validate that the provided password
