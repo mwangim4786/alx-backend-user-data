@@ -2,13 +2,13 @@
 """ encrypting passwords """
 import bcrypt
 
+
 def hash_password(password: str) -> bytes:
     """ expects one string argument name password and returns
         a salted, hashed password, which is a byte string.
     """
     if password:
         return bcrypt.hashpw(str.encode(password), bcrypt.gensalt())
-
 
 def is_valid(hashed_password: bytes, password: str) -> bool:
     """  expects 2 arguments and returns a boolean.
