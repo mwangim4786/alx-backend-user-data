@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """ Route task 2 """
-from typing import List
-import re
+import csv
 import logging
+import os
+import re
+from typing import List
+import mysql.connector
 
 PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
