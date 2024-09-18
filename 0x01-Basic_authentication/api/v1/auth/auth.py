@@ -24,7 +24,7 @@ class Auth():
         if path in excluded_paths:
             return False
         else:
-            return True 
+            return True
 
     def authorization_header(self, request=None) -> str:
         """ authorization header check"""
@@ -38,3 +38,4 @@ class Auth():
     def current_user(self, request=None) -> TypeVar('User'):
         """ current user method"""
         return None
+    
