@@ -25,7 +25,6 @@ if os.getenv('AUTH_TYPE') == 'session_auth':
     from api.v1.auth.session_auth import SessionAuth
     auth = SessionAuth()
 
-
 @app.before_request
 def before_request() -> Optional[str]:
     """ Authenticates a user before processing a request.
@@ -41,20 +40,17 @@ def before_request() -> Optional[str]:
         return abort(403)
     request.current_user = auth.current_user(request)
 
-
 @app.errorhandler(404)
 def not_found(error) -> str:
     """ Not found handler
     """
     return jsonify({"error": "Not found"}), 404
 
-
 @app.errorhandler(401)
 def unauthorized(error) -> str:
     """ Request unauthorized handler
     """
     return jsonify({"error": "Unauthorized"}), 401
-
 
 @app.errorhandler(403)
 def forbidden(error) -> str:
