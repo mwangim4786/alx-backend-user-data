@@ -11,14 +11,14 @@ from models.user import User
 
 class BasicAuth(Auth):
     """sumary_line
-    
+
     Keyword arguments:
     argument -- description
     Return: return_description
     """
     def extract_base64_authorization_header(self, authorization_header: str) -> str:
         """sumary_line
-        
+
         Keyword arguments:
         argument -- description
         Return: return_description
@@ -35,7 +35,7 @@ class BasicAuth(Auth):
 
     def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
         """sumary_line
-        
+
         Keyword arguments:
         argument -- description
         Return: return_description
@@ -55,7 +55,7 @@ class BasicAuth(Auth):
 
     def extract_user_credentials(self, decoded_base64_authorization_header: str) -> (str, str):
         """sumary_line
-        
+
         Keyword arguments:
         argument -- description
         Return: return_description
@@ -72,7 +72,7 @@ class BasicAuth(Auth):
 
     def user_object_from_credentials(self, user_email: str, user_pwd: str) -> TypeVar('User'):
         """sumary_line
-        
+
         Keyword arguments:
         argument -- description
         Return: return_description
@@ -99,7 +99,7 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """sumary_line
-        
+
         Keyword arguments:
         argument -- description
         Return: return_description
