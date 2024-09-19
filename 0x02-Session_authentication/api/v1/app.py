@@ -2,11 +2,13 @@
 """
 Route module for the API
 """
+import os
 from os import getenv
-from api.v1.views import app_views
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 from typing import Optional
+
+from api.v1.views import app_views
 
 
 app = Flask(__name__)
@@ -23,14 +25,9 @@ elif os.getenv('AUTH_TYPE') == 'basic_auth':
 
 @app.before_request
 def before_request() -> Optional[str]:
-    """ sumary_line
-        Keyword arguments:
-        argument -- description
-        Return: return_description
+    """ Authenticates a user before processing a request.
     """
-    allowed_paths = ['/api/v1/status/',
-                    '/api/v1/unauthorized/',
-                    '/api/v1/forbidden/']
+    allowed_paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
     if auth is None:
         return
     if not auth.require_auth(request.path, allowed_paths):
