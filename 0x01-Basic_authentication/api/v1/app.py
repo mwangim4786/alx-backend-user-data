@@ -33,8 +33,8 @@ def before_request() -> Optional[str]:
     Return: return_description
     """
     allowed_paths = ['/api/v1/status/',
-                    '/api/v1/unauthorized/',
-                    '/api/v1/forbidden/']
+                     '/api/v1/unauthorized/',
+                     '/api/v1/forbidden/']
     if auth is None:
         return
     if not auth.require_auth(request.path, allowed_paths):
