@@ -34,9 +34,9 @@ def before_request() -> Optional[str]:
     """
     allowed_paths = ['/api/v1/status/',
                     '/api/v1/unauthorized/',
-                    '/api/v1/forbidden/'] # paths that don't need auth
+                    '/api/v1/forbidden/']
     if auth is None:
-        return # no need for authentication
+        return
     if not auth.require_auth(request.path, allowed_paths):
         return
     if auth.authorization_header(request) is None:
