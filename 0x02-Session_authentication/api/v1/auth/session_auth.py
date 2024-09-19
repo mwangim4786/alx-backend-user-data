@@ -12,4 +12,3 @@ from models.user import User
 class SessionAuth(Auth):
     """ class to handle session auth
     """
-    
