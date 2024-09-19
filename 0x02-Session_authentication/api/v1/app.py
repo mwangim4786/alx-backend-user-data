@@ -43,6 +43,7 @@ def before_request() -> Optional[str]:
         return abort(401) 
     if auth.current_user(request) is None:
         return abort(403)
+    request.current_user = auth.current_user(request)
 
 
 
