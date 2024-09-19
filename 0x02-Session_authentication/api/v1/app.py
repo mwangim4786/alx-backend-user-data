@@ -7,7 +7,6 @@ from os import getenv
 from flask import Flask, jsonify, abort, request
 from flask_cors import (CORS, cross_origin)
 from typing import Optional
-
 from api.v1.views import app_views
 
 
