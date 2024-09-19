@@ -28,11 +28,7 @@ class SessionAuth(Auth):
         return session_id
     
     def user_id_for_session_id(self, session_id: str = None) -> str:
-        """sumary_line
-        
-        Keyword arguments:
-        argument -- description
-        Return: return_description
+        """ return use_id from session_id
         """
         if not session_id or not isinstance(session_id, str):
             return
