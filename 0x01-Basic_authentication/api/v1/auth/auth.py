@@ -24,10 +24,12 @@ class Auth():
         else:
             return True
 
+
     def authorization_header(self, request=None) -> str:
         """ authorization header check"""
         if request:
             return request.headers.get('Authorization')
+
 
     def current_user(self, request=None) -> TypeVar('User'):
         """ current user method"""
