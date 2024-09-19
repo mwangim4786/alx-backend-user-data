@@ -27,7 +27,7 @@ elif os.getenv('AUTH_TYPE') == 'basic_auth':
 @app.before_request
 def before_request() -> Optional[str]:
     """sumary_line
-    
+
     Keyword arguments:
     argument -- description
     Return: return_description
@@ -40,7 +40,7 @@ def before_request() -> Optional[str]:
     if not auth.require_auth(request.path, allowed_paths):
         return
     if auth.authorization_header(request) is None:
-        return abort(401) 
+        return abort(401)
     if auth.current_user(request) is None:
         return abort(403)
 
