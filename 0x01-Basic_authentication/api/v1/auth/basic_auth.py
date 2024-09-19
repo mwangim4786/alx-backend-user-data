@@ -10,19 +10,17 @@ from models.user import User
 
 
 class BasicAuth(Auth):
-    """sumary_line
-
-    Keyword arguments:
-    argument -- description
-    Return: return_description
-    """
-    def extract_base64_authorization_header(self, authorization_header: str)\
-        -> str:
-        """sumary_line
-
+    """ sumary_line
         Keyword arguments:
         argument -- description
         Return: return_description
+    """
+    def extract_base64_authorization_header(self, authorization_header: str)\
+        -> str:
+        """ sumary_line
+            Keyword arguments:
+            argument -- description
+            Return: return_description
         """
         if authorization_header is None:
             return None
@@ -36,11 +34,10 @@ class BasicAuth(Auth):
 
     def decode_base64_authorization_header(self, base64_authorization_header:\
                                            str) -> str:
-        """sumary_line
-
-        Keyword arguments:
-        argument -- description
-        Return: return_description
+        """ sumary_line
+            Keyword arguments:
+            argument -- description
+            Return: return_description
         """
         if base64_authorization_header is None:
             return None
@@ -57,11 +54,10 @@ class BasicAuth(Auth):
 
     def extract_user_credentials(self, decoded_base64_authorization_header:\
                                  str) -> (str, str):
-        """sumary_line
-
-        Keyword arguments:
-        argument -- description
-        Return: return_description
+        """ sumary_line
+            Keyword arguments:
+            argument -- description
+            Return: return_description
         """
         if not decoded_base64_authorization_header:
             return None, None
@@ -76,11 +72,10 @@ class BasicAuth(Auth):
 
     def user_object_from_credentials(self, user_email: str, user_pwd: str) ->\
         TypeVar('User'):
-        """sumary_line
-
-        Keyword arguments:
-        argument -- description
-        Return: return_description
+        """ sumary_line
+            Keyword arguments:
+            argument -- description
+            Return: return_description
         """
         if not user_email or not isinstance(user_email, str):
             return None
@@ -103,11 +98,10 @@ class BasicAuth(Auth):
     
 
     def current_user(self, request=None) -> TypeVar('User'):
-        """sumary_line
-
-        Keyword arguments:
-        argument -- description
-        Return: return_description
+        """ sumary_line
+            Keyword arguments:
+            argument -- description
+            Return: return_description
         """
         auth_header = self.authorization_header(request)
         b64_str = self.extract_base64_authorization_header(auth_header)
