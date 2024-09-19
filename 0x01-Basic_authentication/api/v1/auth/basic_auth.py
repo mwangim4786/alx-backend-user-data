@@ -16,7 +16,8 @@ class BasicAuth(Auth):
     argument -- description
     Return: return_description
     """
-    def extract_base64_authorization_header(self, authorization_header: str) -> str:
+    def extract_base64_authorization_header(self, authorization_header: str)\
+        -> str:
         """sumary_line
 
         Keyword arguments:
@@ -33,7 +34,8 @@ class BasicAuth(Auth):
         return value
 
 
-    def decode_base64_authorization_header(self, base64_authorization_header: str) -> str:
+    def decode_base64_authorization_header(self, base64_authorization_header:\
+                                           str) -> str:
         """sumary_line
 
         Keyword arguments:
@@ -53,7 +55,8 @@ class BasicAuth(Auth):
         return decoded_base64
     
 
-    def extract_user_credentials(self, decoded_base64_authorization_header: str) -> (str, str):
+    def extract_user_credentials(self, decoded_base64_authorization_header:\
+                                 str) -> (str, str):
         """sumary_line
 
         Keyword arguments:
@@ -66,11 +69,13 @@ class BasicAuth(Auth):
             return None, None
         if ":" not in decoded_base64_authorization_header:
             return None, None
-        user, password = decoded_base64_authorization_header.split(":", maxsplit=1)
+        user, password = decoded_base64_authorization_header.split(":",\
+                                                                   maxsplit=1)
         return user, password
     
 
-    def user_object_from_credentials(self, user_email: str, user_pwd: str) -> TypeVar('User'):
+    def user_object_from_credentials(self, user_email: str, user_pwd: str) ->\
+        TypeVar('User'):
         """sumary_line
 
         Keyword arguments:
