@@ -63,7 +63,7 @@ class SessionAuth(Auth):
         if not user_id:
             return False
 
-        user = User.get(user)
+        user = User.get(user_id)
         if not user:
             return False
 
