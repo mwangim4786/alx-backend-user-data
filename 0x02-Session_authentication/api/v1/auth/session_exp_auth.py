@@ -14,9 +14,9 @@ class SessionExpAuth(SessionAuth):
     def __init__(self):
         """ constructor method
         """
-        sess_duration = getenv("SESSION_DURATION")
+        duration = getenv("SESSION_DURATION")
         try:
-            session_duration = int(sess_duration)
+            session_duration = int(duration)
         except Exception:
             session_duration = 0
 
@@ -43,7 +43,7 @@ class SessionExpAuth(SessionAuth):
         """
         if not session_id:
             return
-        if session_id not in self.user_id_for_session_id.keys():
+        if session_id not in self.user_id_by_session_id.keys():
             return
 
         session_dict = self.user_id_by_session_id.get(session_id)
