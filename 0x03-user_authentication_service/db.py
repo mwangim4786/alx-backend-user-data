@@ -30,8 +30,8 @@ class DB:
             DBSession = sessionmaker(bind=self._engine)
             self.__session = DBSession()
         return self.__session
-    
-    def add_user(self, email:str, hashed_password: str) -> User:
+
+    def add_user(self, email: str, hashed_password: str) -> User:
         """
         Add user method
         """
@@ -41,7 +41,7 @@ class DB:
         self._session.add(new_user)
         self._session.commit()
         return new_user
-    
+
     def find_user_by(self, **kwargs) -> User:
         """ gets user id based on keywords provided """
         for key in kwargs.keys():
@@ -52,7 +52,7 @@ class DB:
         if user:
             return user
         raise NoResultFound()
-    
+
     def update_user(self, user_id: int, **kwargs) -> None:
         """ Update user attributes based on keywords provided """
         user_to_update = self.find_user_by(id=user_id)
@@ -62,5 +62,3 @@ class DB:
             else:
                 raise ValueError()
         self.__session.commit()
-
-        
