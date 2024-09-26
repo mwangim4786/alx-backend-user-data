@@ -33,6 +33,6 @@ class Auth:
 
         hash_pass = _hash_password(password)
         new_user = self.__db.add_user(email=email,
-                                    hashed_password=hash_pass.decode("utf-8"))
+                                      hashed_p=hash_pass.decode("utf-8"))
         self.__db
         return new_user
