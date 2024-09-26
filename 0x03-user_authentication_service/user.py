@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ Creates user Database table """
 from sqlalchemy import Column, String, Integer
 from sqlalchemy.ext.declarative import declarative_base
