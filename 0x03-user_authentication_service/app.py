@@ -24,10 +24,8 @@ def user() -> str:
     Registers users
     """
     if request.method == "POST":
-        raw_email = request.form.get("email")
-        email = raw_email.strip()
-        raw_pass = request.form.get("password")
-        password = raw_pass.strip()
+        email = request.form.get("email")
+        password = request.form.get("password")
         try:
             AUTH.register_user(email, password)
             message = jsonify({"email": email, "message": "user created"})
