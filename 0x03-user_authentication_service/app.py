@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 @app.route("/")
-def home() -> Response:
+def home() -> str:
     """
     Home route
     """
@@ -19,7 +19,7 @@ def home() -> Response:
 
 
 @app.route("/users", methods=["POST"])
-def users() -> Response:
+def user() -> str:
     """
     Registers users
     """
