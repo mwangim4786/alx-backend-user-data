@@ -7,7 +7,6 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm.session import Session
 from sqlalchemy.exc import InvalidRequestError
 from sqlalchemy.orm.exc import NoResultFound
-
 from user import Base, User
 
 
@@ -36,13 +35,15 @@ class DB:
         """
         Add user method
         """
+        if not email or not hashed_password:
+            return
         new_user = User(email=email, hashed_password=hashed_password)
         self._session.add(new_user)
         self._session.commit()
         return new_user
     
     def find_user_by(self, **kwargs) -> User:
-        """  """
+        """ gets user id based on keywords provided """
         for key in kwargs.keys():
             if not hasattr(User, key):
                 raise InvalidRequestError()
@@ -51,5 +52,15 @@ class DB:
         if user:
             return user
         raise NoResultFound()
+    
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """ Update user attributes based on keywords provided """
+        user_to_update = self.find_user_by(id=user_id)
+        for attr, value in kwargs.items():
+            if hasattr(User, attr):
+                setattr(user_to_update, attr, value)
+            else:
+                raise ValueError()
+        self.__session.commit()
 
         
