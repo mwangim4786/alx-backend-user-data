@@ -5,6 +5,7 @@ Module to run flask app
 from flask import Flask, jsonify, Response, request, abort
 from auth import Auth
 
+AUTH = Auth()
 app = Flask(__name__)
 
 
@@ -28,7 +29,7 @@ def users() -> Response:
         raw_pass = request.form.get("password")
         password = raw_pass.strip()
         try:
-            Auth.register_user(email, password)
+            AUTH.register_user(email, password)
             message = jsonify({"email": email, "message": "user created"})
             return message
         except Exception:
