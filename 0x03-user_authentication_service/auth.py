@@ -44,7 +44,7 @@ class Auth:
 
         hashP = _hash_password(password)
         new_user = self._db.add_user(email=email,
-                                      hashed_password=hashP.decode("utf-8"))
+                                     hashed_password=hashP.decode("utf-8"))
         self._db
         return new_user
 
