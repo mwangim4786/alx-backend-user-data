@@ -58,7 +58,7 @@ def logout() -> str:
     Return:
         - Redirects to home route.
     """
-    session_id = request.cookies.get("session_id")
+    session_id = request.cookies.get("session_id", None)
     user = AUTH.get_user_from_session_id(session_id)
     if user is None:
         abort(403)
