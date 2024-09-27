@@ -31,21 +31,21 @@ class Auth:
     """
     def __init__(self) -> None:
         """  """
-        self.__db = DB()
+        self._db = DB()
 
     def register_user(self, email: str, password: str) -> User:
         """  """
         try:
-            existing_user = self.__db.find_user_by(email=email)
+            existing_user = self._db.find_user_by(email=email)
             if existing_user:
                 raise ValueError(f"User {email} already exists")
         except NoResultFound:
             pass
 
         hashP = _hash_password(password)
-        new_user = self.__db.add_user(email=email,
+        new_user = self._db.add_user(email=email,
                                       hashed_password=hashP.decode("utf-8"))
-        self.__db
+        self._db
         return new_user
 
     def valid_login(self, email: str, password: str) -> bool:
@@ -53,7 +53,7 @@ class Auth:
         Validate user login
         """
         try:
-            existing_user = self.__db.find_user_by(email=email)
+            existing_user = self._db.find_user_by(email=email)
             if existing_user:
                 encoded_hashed_pass = password.encode()
                 user_pass_bytes = existing_user.hashed_password.encode("utf-8")
@@ -75,7 +75,7 @@ class Auth:
         try:
             user = self._db.find_user_by(email=email)
             session_id = _generate_uuid()
-            self.__db.update_user(user.id, session_id=session_id)
+            self._db.update_user(user.id, session_id=session_id)
             return session_id
         except NoResultFound:
             return
