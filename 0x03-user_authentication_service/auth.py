@@ -144,4 +144,4 @@ class Auth:
                                  hashed_password=_hash_password(password),
                                  reset_token=None)
         except NoResultFound:
-            raise ValueError 
+            raise ValueError
