@@ -42,9 +42,9 @@ class Auth:
         except NoResultFound:
             pass
 
-        hash_pass = _hash_password(password)
+        hashP = _hash_password(password)
         new_user = self.__db.add_user(email=email,
-                                      hashed_p=hash_pass.decode("utf-8"))
+                                      hashed_password=hashP.decode("utf-8"))
         self.__db
         return new_user
 
