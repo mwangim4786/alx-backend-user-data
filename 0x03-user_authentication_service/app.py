@@ -52,18 +52,23 @@ def login() -> str:
     return response
 
 
-@app.route("/sessions", methods=["DELETE"], strict_slashes=False)
+@app.route("/sessions", methods=["DELETE"])
 def logout() -> str:
     """DELETE /sessions
     Return:
         - Redirects to home route.
     """
-    session_id = request.cookies.get("session_id")
-    user = AUTH.get_user_from_session_id(session_id)
-    if user is None:
-        abort(403)
-    AUTH.destroy_session(user.id)
-    return redirect("/")
+    if request.method == "DELETE":
+        session_id = request.cookies.get("session_id", None)
+        if session_id is None:
+            abort(403)
+        try:
+            user = AUTH.get_user_from_session_id(session_id)
+            if user:
+                AUTH.destroy_session(user.id)
+                return redirect("/")
+        except Exception:
+            abort(403)
 
 
 @app.route('/profile', methods=['GET'], strict_slashes=False)
