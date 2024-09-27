@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """ Creates user Database table """
+from uuid import uuid4
 import bcrypt
 from sqlalchemy.orm.exc import NoResultFound
+from typing import Optional
 from db import DB
 from user import User
-from uuid import uuid4
 
 
 def _hash_password(password: str) -> bytes:
@@ -41,9 +42,9 @@ class Auth:
         except NoResultFound:
             pass
 
-        hash_pass = _hash_password(password)
+        hashP = _hash_password(password)
         new_user = self.__db.add_user(email=email,
-                                      hashed_p=hash_pass.decode("utf-8"))
+                                      hashed_password=hashP.decode("utf-8"))
         self.__db
         return new_user
 
@@ -61,3 +62,20 @@ class Auth:
                 return False
         except NoResultFound:
             return False
+
+    def create_session(self, email: str) -> str:
+        """create a new session for user
+
+        Args:
+            email (str): email of user
+
+        Returns:
+            str: string representation of session ID
+        """
+        try:
+            user = self._db.find_user_by(email=email)
+            session_id = _generate_uuid()
+            self.__db.update_user(user.id, session_id=session_id)
+            return session_id
+        except NoResultFound:
+            return
