@@ -79,11 +79,7 @@ def profile() -> str:
        str: message
     """
     session_id = request.cookies.get("session_id", None)
-    existing_user = AUTH.get_user_from_session_id(session_id)
-    if existing_user:
-        return jsonify({"email": "User Email"}), 200
-    else:
-        abort(403)
+    return session_id
 
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)
