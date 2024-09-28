@@ -80,7 +80,7 @@ def profile() -> str:
     """
     session_id = request.cookies.get("session_id", None)
     existing_user = AUTH.get_user_from_session_id(session_id)
-    return existing_user
+    print(existing_user)
 
 
 @app.route('/reset_password', methods=['POST'], strict_slashes=False)
